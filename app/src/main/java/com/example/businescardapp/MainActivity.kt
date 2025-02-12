@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 
 import androidx.compose.foundation.layout.Row
@@ -21,8 +22,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -40,11 +43,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BusinesCardAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    BusinessCard(
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+              BusinessCard(modifier = Modifier)
             }
         }
     }
@@ -56,11 +55,12 @@ fun BusinessCard(modifier: Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
+            .background(Color(0xFFD2E8D4))
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ProfileSection(name = "Full name", title = "Title")
+        ProfileSection(name = "Jennifer Doe", title = "Android Developer Extraordinaire")
     }
 }
 
@@ -70,31 +70,31 @@ fun ProfileSection(name: String,title:String, modifier: Modifier = Modifier) {
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = modifier.fillMaxSize()
-
+            .padding(top = 250.dp)
     )
     {
         Image(
             painter = painterResource(R.drawable.profile),
-
             contentDescription = "Profile Image" ,
             modifier = Modifier.size(150.dp)
                                .fillMaxWidth()
                                 .align(Alignment.CenterHorizontally)
-
         )
         Text(
             text = name,
             fontSize = 40.sp,
             textAlign = TextAlign.Center,
-            fontWeight = FontWeight.Bold,
-            modifier = modifier.fillMaxWidth(),
-
+            modifier = modifier.fillMaxWidth()
+                .padding(bottom = 10.dp)
+                .padding(top = 10.dp)
         )
         Text(
             text = title,
-            fontSize = 23.sp,
+            color = Color(0xFF006D3B),
+            fontSize = 15.sp,
             textAlign = TextAlign.Center,
             modifier = modifier.fillMaxWidth()
+
 
 
         )
@@ -106,34 +106,34 @@ fun ProfileSection(name: String,title:String, modifier: Modifier = Modifier) {
 
 }
 
-
 @Composable
 fun ContactSection(){
     Column (
-        modifier = Modifier.fillMaxWidth()
-            .padding(vertical = 70.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-
+        modifier = Modifier.fillMaxSize()
+            .padding(horizontal = 70.dp, vertical = 30.dp),
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.Bottom
     ){
-        ContactInfo(imageRes = R.drawable.phone, contactDescription = "+00 (00)-000-000")
-        ContactInfo(imageRes = R.drawable.email, contactDescription = "@socialMediaHandle")
-        ContactInfo(imageRes = R.drawable.social, contactDescription = "email@doeail.com")    }
-
+        ContactInfo(imageRes = R.drawable.phone, contactDescription = "+11 (123) 444 555 666")
+        ContactInfo(imageRes = R.drawable.email, contactDescription = "@AndroidDev")
+        ContactInfo(imageRes = R.drawable.social, contactDescription = "jen.doe@android.com")
+    }
 }
+
 
 @Composable
 fun ContactInfo(imageRes:Int,contactDescription:String){
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
-        modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 90.dp)
+        modifier = Modifier.wrapContentSize()
     ) {
         Image(
             painter = painterResource(id = imageRes),
-            contentDescription = "phoneImage",
-
+            contentDescription = "Image",
+            modifier = Modifier.size(24.dp)
         )
+        Spacer(modifier = Modifier.width(20.dp))
         Text(
             text = contactDescription
 
@@ -141,7 +141,6 @@ fun ContactInfo(imageRes:Int,contactDescription:String){
     }
 
 }
-
 
 @Preview(showBackground = true)
 @Composable
