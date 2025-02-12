@@ -76,7 +76,7 @@ fun ProfileSection(name: String,title:String, modifier: Modifier = Modifier) {
         Image(
             painter = painterResource(R.drawable.profile),
             contentDescription = "Profile Image" ,
-            modifier = Modifier.size(150.dp)
+            modifier = Modifier.size(100.dp)
                                .fillMaxWidth()
                                 .align(Alignment.CenterHorizontally)
         )
@@ -92,6 +92,7 @@ fun ProfileSection(name: String,title:String, modifier: Modifier = Modifier) {
             text = title,
             color = Color(0xFF006D3B),
             fontSize = 15.sp,
+            fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
             modifier = modifier.fillMaxWidth()
 
@@ -110,7 +111,7 @@ fun ProfileSection(name: String,title:String, modifier: Modifier = Modifier) {
 fun ContactSection(){
     Column (
         modifier = Modifier.fillMaxSize()
-            .padding(horizontal = 70.dp, vertical = 30.dp),
+            .padding(horizontal = 70.dp, vertical = 70.dp),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Bottom
     ){
@@ -127,6 +128,7 @@ fun ContactInfo(imageRes:Int,contactDescription:String){
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
         modifier = Modifier.wrapContentSize()
+            .padding(vertical = 8.dp)
     ) {
         Image(
             painter = painterResource(id = imageRes),
